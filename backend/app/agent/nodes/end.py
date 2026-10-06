@@ -1,6 +1,8 @@
 """
 End Node for Sahayak Voice V2.
 Terminates the call cleanly and deterministically.
+Always uses the warm Gujarati closing from buildCallEndReply —
+never re-uses the last LLM reply as the goodbye message.
 """
 
 from __future__ import annotations
@@ -11,10 +13,12 @@ from app.prompts.end import buildCallEndReply
 
 
 def endCall(state: CallState, db: Any = None) -> dict[str, Any]:
-    """Wraps up the session and marks call ended."""
+    """Wraps up the session with a warm deterministic Gujarati closing."""
     snap = state.get("snapshot") or state.get("accountFacts") or {}
     customer_name = state.get("customerName") or snap.get("customerName") or "ગ્રાહક"
-    closing_reply = state.get("lastAgentReply") or buildCallEndReply(customer_name)
+
+    # Always use the rotating warm closing — never re-use the last LLM reply
+    closing_reply = buildCallEndReply(customer_name)
 
     return {
         "phase": "end",
