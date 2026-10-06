@@ -1,0 +1,56 @@
+# ── Python ──────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# ── Secrets & Credentials ───────────────────────────────────────
+*.pem
+*.key
+*.secret
+.secrets/
+# Ignore ALL .env files except the safe example files
+.env
+**/.env
+**/.env.*
+!backend/.env.example
+!frontend/.env.production
+
+# ── Testing / Coverage ──────────────────────────────────────────
+.pytest_cache/
+.deepeval/
+test_output/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Node / Next.js ──────────────────────────────────────────────
+node_modules/
+.next/
+.cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# ── macOS ───────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── IDE ─────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Docker ──────────────────────────────────────────────────────
+docker-compose.override.yml
