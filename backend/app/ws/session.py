@@ -25,16 +25,23 @@ from app.voice.tts import SarvamTtsClient, splitIntoSpokenSentences, audioCache
 
 # ──────────────────────────────────────────────────────────────────────────────
 # T1: Speculative Filler Phrases
-# Gujarati empathetic acknowledgments — short enough to synthesize in <300ms
-# These are pre-rendered into the AudioCache on startup to achieve 0ms TTFA.
+# કુદરતી ગુજરાતી બેંક-એજન્ટ ફિલર્સ — LLM પ્રોસેસ થતી વખતે તરત બોલાય.
+# Pre-rendered into AudioCache on startup → 0ms TTFA (cache hit).
 # ──────────────────────────────────────────────────────────────────────────────
 
 _FILLER_PHRASES = [
-    "જી, સમજ્યો.",         # "Understood."
-    "જી, હા.",              # "Yes."
-    "ઠીક છે.",              # "Okay."
-    "એક ક્ષણ.",             # "One moment."
-    "જી, ચોક્કસ.",          # "Certainly."
+    "જી, સમજ્યો, એક ક્ષણ.",          # "Understood, one moment."
+    "જી, ચોક્કસ, હું જોઉં છું.",       # "Certainly, let me check."
+    "હા, બિલકુલ, એક સેકન્ડ.",         # "Yes, absolutely, one second."
+    "જી, હું તમારી વિગત જોઉં છું.",    # "Yes, I'm looking at your details."
+    "ઠીક છે, એક ક્ષણ રાહ જુઓ.",       # "Okay, please wait a moment."
+    "જી, સમજ્યો.",                     # "Understood."
+    "હા, તમારી વાત સાંભળી.",           # "Yes, I heard you."
+    "જી, ચોક્કસ.",                     # "Certainly."
+    "એક ક્ષણ, હું ચેક કરું છું.",      # "One moment, I'm checking."
+    "જી, બિલકુલ, જોઉં છું.",           # "Yes, absolutely, checking."
+    "ઠીક છે, સમજ્યો.",                 # "Okay, understood."
+    "જી, હા, એક ક્ષણ.",               # "Yes, one moment."
 ]
 
 # Which filler to use per turn (cycles through list for naturalness)
